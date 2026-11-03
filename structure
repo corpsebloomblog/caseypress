@@ -4,9 +4,10 @@ Sequence: (template, generate, link)
 - Link pages and fill out index pages
 
 
-- /Data          # stores the posts and stuff
-- /Docs          # compile target
-- /Template      # stores the structure of the website
+- /data			# stores the posts and stuff
+- /docs			# compile target
+- /template		# stores the structure of the website
+- /assets		# stores importable snippets of HTML
 
 
 {{ file_to_pull_from.html }} <- insert for HTML
