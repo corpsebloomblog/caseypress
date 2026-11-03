@@ -20,6 +20,6 @@ PATH: [path to section, e.g. /basilisk-devlog]
     ->  this is where it will put the newly generated page AND where it will
         search for the index.html to put the link into
 DATE: when it was posted
-SERIES: what collection it should be part of for the purposes of previous/next
+SERIES*: (none) what collection it should be part of for the purposes of previous/next
 
 *optional, default indicated in brackets
