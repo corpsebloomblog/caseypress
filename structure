@@ -4,7 +4,7 @@ Sequence: (template, generate, link)
 - Link pages and fill out index pages
 
 
-- /data			# stores the posts and stuff
+- /pages		# stores the posts and stuff
 - /docs			# compile target
 - /template		# stores the structure of the website
 - /assets		# stores importable snippets of HTML
@@ -16,6 +16,7 @@ Sequence: (template, generate, link)
 TITLE: name for file, links, etc.
 FILENAME*: (title) alternative name if title isn't valid as a filename
 ALTTITLE*: (title) alternative for sublinks if title too long
+TEMPLATE*: (/template.html for that folder) template to insert text into
 SUBTITLE: subtitle for posts and for the page
 PATH: [path to section, e.g. /basilisk-devlog]
     ->  this is where it will put the newly generated page AND where it will
