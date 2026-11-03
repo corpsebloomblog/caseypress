@@ -7,10 +7,10 @@ Sequence: (template, generate, link)
 - /pages		# stores the posts and stuff
 - /docs			# compile target
 - /template		# stores the structure of the website
-- /assets		# stores importable snippets of HTML
+- /fragments	# stores importable snippets of HTML
 
 
-{{ file_to_pull_from.html }} <- insert for HTML
+#insert file.html <- insert for HTML
 
 --- METADATA ---
 TITLE: name for file, links, etc.
