@@ -14,7 +14,6 @@ Sequence: (template, generate, link)
 
 --- METADATA ---
 TITLE: name for file, links, etc.
-FILENAME*: (title) alternative name if title isn't valid as a filename
 ALTTITLE*: (title) alternative for sublinks if title too long
 TEMPLATE*: (/template.html for that folder) template to insert text into
 SUBTITLE: subtitle for posts and for the page
