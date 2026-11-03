@@ -14,9 +14,9 @@ Sequence: (template, generate, link)
 
 --- METADATA ---
 TITLE: name for file, links, etc.
+SUBTITLE: subtitle for posts and for the page
 ALTTITLE*: (title) alternative for sublinks if title too long
 TEMPLATE*: (/template.html for that folder) template to insert text into
-SUBTITLE: subtitle for posts and for the page
 PATH: [path to section, e.g. /basilisk-devlog]
     ->  this is where it will put the newly generated page AND where it will
         search for the index.html to put the link into
