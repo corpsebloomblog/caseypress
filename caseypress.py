@@ -8,6 +8,7 @@ META_DATE = "DATE"
 META_SERIES = "SERIES"
 # INDEX METADATA / CONFIG
 META_TARGET_FOLDER = "TARGET"
+META_TARGET_POSTS = "POSTS"
 META_POST_TEMPLATE = "POST TEMPLATE"
 META_INDEX_TEMPLATE = "INDEX TEMPLATE"
 # INDEX OTHER
@@ -56,4 +57,4 @@ def fill_template(text, keypairs):
 #--
 
 config = parse_metadata(read_file(CONFIG))
-print(config)
+
