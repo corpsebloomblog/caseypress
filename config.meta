@@ -1,3 +1,0 @@
-TARGET: docs
-POST TEMPLATE: templates/post.html
-INDEX TEMPLATE: templates/index.html

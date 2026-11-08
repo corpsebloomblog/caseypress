@@ -1,3 +1,5 @@
+CONFIG = "config"
+
 # PAGE METADATA PARSING
 META_TEMPLATE = "TEMPLATE"
 META_TITLE = "TITLE"
@@ -22,16 +24,18 @@ TEMPLATE_KEY_POSTS = "[BLOGPOSTS]"
 NO_SERIES = "none"
 
 #--
+# HELPER FUNCTIONS
+#--
 
 def read_file(file):
     with open(file, 'r') as f:
         return f.read()
 
+
 def write_file(file, string):
     with open(file, 'w+') as f:
         f.write(string)
 
-#--
 
 def parse_metadata(string):
     string = string.split("\n")
@@ -47,5 +51,9 @@ def fill_template(text, keypairs):
         text = text.replace(keypair[0], keypair[1])
     return text
 
+#--
+# SCRIPT
+#--
 
-
+config = parse_metadata(read_file(CONFIG))
+print(config)
