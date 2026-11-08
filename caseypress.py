@@ -7,6 +7,15 @@ KEY_SERIES = "SERIES"
 SEPARATOR = ": "
 
 
+def read_file(file):
+    with open(file, 'r') as f:
+        return f.read()
+
+def write_file(file, string):
+    with open(file, 'w+') as f:
+        f.write(string)
+
+
 def parse_metadata(string):
     string = string.split("\n")
     metadata = dict()
@@ -16,5 +25,4 @@ def parse_metadata(string):
     return metadata
 
 
-with open("test.meta", 'r') as f:
-    print(parse_metadata(f.read()))
+print(parse_metadata(read_file("test.meta")))
