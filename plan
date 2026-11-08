@@ -1,0 +1,19 @@
+STRUCTURE
+/posts				<- with the posts and metadata files
+	[post.html]	
+	[metadata.meta]
+/docs				<- example compile target
+template.html
+post.html
+
+FOLDER SETTINGS:
+	- TARGET: compile target
+	- TEMPLATE: template for index file
+	- POST: template for blogpost link in index
+
+POST METADATA:
+	- TEMPLATE: template file to build from
+	- TITLE
+	- SUBTITLE
+	- DATE
+	- SERIES (set 'none' if none)
