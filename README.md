@@ -2,7 +2,8 @@
 TARGET: target folder for the press
 POSTS: folder the posts are stored in
 LINK TEMPLATE: HTML fragment for what the links should look like
-INDEX TEMPLATE: template for the index
+INDEX TEMPLATE: template file for the index
+INDEX NAME: name for the index file. should nearly always be index.html
 
 ### INDEX TEMPLAE REPLACEMENT KEYS
 [BLOGPOSTS]

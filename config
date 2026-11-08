@@ -1,4 +1,5 @@
 TARGET: docs
 POSTS: posts
-POST TEMPLATE: templates/post.html
+LINK TEMPLATE: templates/post.html
 INDEX TEMPLATE: templates/index.html
+INDEX NAME: index.html

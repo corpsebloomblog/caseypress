@@ -1,4 +1,5 @@
 import glob
+from datetime import datetime
 
 
 CONFIG = "config"
@@ -14,6 +15,7 @@ META_TARGET_FOLDER = "TARGET"
 META_POSTS_FOLDER = "POSTS"
 META_POST_TEMPLATE = "LINK TEMPLATE"
 META_INDEX_TEMPLATE = "INDEX TEMPLATE"
+META_INDEX_NAME = "INDEX NAME"
 # METADATA OTHER
 SEPARATOR = ": "
 
@@ -24,6 +26,7 @@ TEMPLATE_DATE = "[DATE]"
 TEMPLATE_TEXT = "[TEXT]"
 # INDEX TEMPLATING
 TEMPLATE_KEY_POSTS = "[BLOGPOSTS]"
+TEMPLATE_LINK = "[LINK]"
 # TEMPLATING OTHER
 NO_SERIES = "none"
 
@@ -58,6 +61,11 @@ def fill_template(text, keypairs):
         text = text.replace(keypair[0], keypair[1])
     return text
 
+def sort_by_latest(post_metadata_pairs):
+	post_metadata_pairs.sort(key=lambda x: datetime.strptime(x[1][META_DATE], "%d/%m/%Y"), reverse = True)
+	return post_metadata_pairs
+
+
 #--
 # SCRIPT
 #--
@@ -75,18 +83,44 @@ for post in posts:
 	else:
 		print(f"WARNING: .meta FILE FOR {post} MISSING")
 
+parsed = []
 for pair in post_metadata_pairs:
 	post = read_file(pair[0])
 	meta = parse_metadata(read_file(pair[1]))
+	filename = pair[0].split("/")[-1]
+	parsed.append((post, meta, filename))
+parsed = sort_by_latest(parsed)
+
+
+index = read_file(config[META_INDEX_TEMPLATE])
+for post in parsed:
+	template = read_file(config[META_POST_TEMPLATE])
+	meta = post[1]
+	keypairs = [
+		(TEMPLATE_TITLE, meta[META_TITLE]),
+		(TEMPLATE_DATE, meta[META_DATE]),
+		(TEMPLATE_SUBTITLE, meta[META_SUBTITLE]),
+		(TEMPLATE_LINK, post[2])
+	]
+	post_text = fill_template(template, keypairs)
+
+	index = index.replace(TEMPLATE_KEY_POSTS, post_text+"\n"+TEMPLATE_KEY_POSTS)
+index = index.replace(TEMPLATE_KEY_POSTS, "")
+write_file(f"{config[META_TARGET_FOLDER]}/{config[META_INDEX_NAME]}", index)
+
+
+for parsed_post in parsed:
+	post = parsed_post[0]
+	meta = parsed_post[1]
+	filename = parsed_post[2]
+
 	template = read_file(meta[META_TEMPLATE])
 	keypairs = [
-		[TEMPLATE_TITLE, meta[META_TITLE]], 
-		[TEMPLATE_SUBTITLE, meta[META_SUBTITLE]],
-		[TEMPLATE_DATE, meta[META_DATE]],
-		[TEMPLATE_TEXT, post]
+		(TEMPLATE_TITLE, meta[META_TITLE]), 
+		(TEMPLATE_SUBTITLE, meta[META_SUBTITLE]),
+		(TEMPLATE_DATE, meta[META_DATE]),
+		(TEMPLATE_TEXT, post)
 	]
 	filled_post = fill_template(template, keypairs)
 	
-	filename = pair[0].split("/")[-1]
-
 	write_file(f"{config[META_TARGET_FOLDER]}/{filename}", filled_post)
