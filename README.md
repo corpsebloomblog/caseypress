@@ -1,0 +1,22 @@
+### CONFIG
+TARGET: target folder for the press
+POSTS: folder the posts are stored in
+LINK TEMPLATE: HTML fragment for what the links should look like
+INDEX TEMPLATE: template for the index
+
+### INDEX TEMPLAE REPLACEMENT KEYS
+[BLOGPOSTS]
+
+
+### POST METADATA FORMAT:
+- TEMPLATE: template to insert text and values into
+- TITLE: title of the post
+- SUBTITLE: subtitle of the post
+- DATE: date of the post
+- SERIES: series the post is part of
+
+### POST TEMPLATE REPLACEMENT KEYS
+[TITLE]
+[SUBTITLE]
+[DATE]
+[TEXT]

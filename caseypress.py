@@ -1,3 +1,6 @@
+import glob
+
+
 CONFIG = "config"
 
 # PAGE METADATA PARSING
@@ -8,10 +11,10 @@ META_DATE = "DATE"
 META_SERIES = "SERIES"
 # INDEX METADATA / CONFIG
 META_TARGET_FOLDER = "TARGET"
-META_TARGET_POSTS = "POSTS"
-META_POST_TEMPLATE = "POST TEMPLATE"
+META_POSTS_FOLDER = "POSTS"
+META_POST_TEMPLATE = "LINK TEMPLATE"
 META_INDEX_TEMPLATE = "INDEX TEMPLATE"
-# INDEX OTHER
+# METADATA OTHER
 SEPARATOR = ": "
 
 # PAGE TEMPLATING
@@ -23,6 +26,9 @@ TEMPLATE_TEXT = "[TEXT]"
 TEMPLATE_KEY_POSTS = "[BLOGPOSTS]"
 # TEMPLATING OTHER
 NO_SERIES = "none"
+
+POST_EXTENSION = "html"
+META_EXTENSION = "meta"
 
 #--
 # HELPER FUNCTIONS
@@ -58,3 +64,29 @@ def fill_template(text, keypairs):
 
 config = parse_metadata(read_file(CONFIG))
 
+posts = glob.glob(f"{config[META_POSTS_FOLDER]}/**/*.{POST_EXTENSION}", recursive = True)
+metadata = glob.glob(f"{config[META_POSTS_FOLDER]}/**/*.{META_EXTENSION}", recursive = True)
+
+post_metadata_pairs = []
+for post in posts:
+	meta = (post[:-len(POST_EXTENSION)]+META_EXTENSION)
+	if meta in metadata:
+		post_metadata_pairs.append((post, meta))
+	else:
+		print(f"WARNING: .meta FILE FOR {post} MISSING")
+
+for pair in post_metadata_pairs:
+	post = read_file(pair[0])
+	meta = parse_metadata(read_file(pair[1]))
+	template = read_file(meta[META_TEMPLATE])
+	keypairs = [
+		[TEMPLATE_TITLE, meta[META_TITLE]], 
+		[TEMPLATE_SUBTITLE, meta[META_SUBTITLE]],
+		[TEMPLATE_DATE, meta[META_DATE]],
+		[TEMPLATE_TEXT, post]
+	]
+	filled_post = fill_template(template, keypairs)
+	
+	filename = pair[0].split("/")[-1]
+
+	write_file(f"{config[META_TARGET_FOLDER]}/{filename}", filled_post)
