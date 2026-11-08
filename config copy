@@ -1,0 +1,5 @@
+TARGET: docs
+POSTS: posts
+LINK TEMPLATE: templates/post.html
+INDEX TEMPLATE: templates/index.html
+INDEX NAME: index.html

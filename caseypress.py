@@ -1,5 +1,6 @@
 import glob
 from datetime import datetime
+from sys import argv
 
 
 CONFIG = "config"
@@ -69,6 +70,12 @@ def sort_by_latest(post_metadata_pairs):
 #--
 # SCRIPT
 #--
+
+if len(argv) == 2:
+	CONFIG = argv[1]
+
+
+
 
 config = parse_metadata(read_file(CONFIG))
 
