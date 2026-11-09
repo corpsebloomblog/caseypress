@@ -7,6 +7,7 @@ INDEX NAME: name for the index file. should nearly always be index.html
 
 ### INDEX TEMPLAE REPLACEMENT KEYS
 [BLOGPOSTS]
+[LINK]
 
 
 ### POST METADATA FORMAT:
